@@ -1,0 +1,39 @@
+body{
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}
+
+
+ /* style for quiz contanier  */
+
+.quizBox section {
+    text-align: center;
+    
+    
+}
+
+.quizBox section button {
+    margin-top: 25px;
+    cursor: pointer;
+    border-radius: 15px;
+    font-size: 20px;
+    background-color: rgb(177, 25, 177);
+    color: white;
+}
+
+
+/* style for header elements  */
+
+header h2 {
+margin-right: 700px;
+}
+
+
+header h2{
+    color: rgb(177, 25, 177);
+}
+
+
+header{
+    display: flex;
+   justify-content: space-evenly;
+}   
