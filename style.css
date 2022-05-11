@@ -37,3 +37,15 @@ header{
     display: flex;
    justify-content: space-evenly;
 }   
+
+
+
+
+    .hide {
+        display: none;
+        }
+
+
+.nextQBtn {
+    cursor: pointer;
+}
