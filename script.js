@@ -3,15 +3,21 @@
     let correctPoints = 10;  // Number of points user gets for ever correct answer
     let container = document.querySelector(".container")
     let questionContainer = document.querySelector(".question")
-    let answerEl = document.querySelectorAll(".answer")
+    let answerEls = document.querySelectorAll(".answer")
     let currentQuestion = 0;
-    
+    let userScore =0;
+
+
     const a_text = document.getElementById('a_text')
     const b_text = document.getElementById('b_text')
     const c_text = document.getElementById('c_text')
     const d_text = document.getElementById('d_text')
 
+
+
+    
 let questions = [
+
     {
         question: "Which language runs in a web browser?",
         a: "Java",
@@ -54,8 +60,10 @@ let questions = [
 ]
 
 
+
+
 // Variables for countdown timer
-let startingMinutes = 2;
+let startingMinutes = .2;
 let time = startingMinutes * 60;
 let timerInterval;
 
@@ -70,16 +78,32 @@ function updateCountdown() {
     countDownT.innerHTML = `${mintues}: ${seconds}`;
     time--;
 
-    if (seconds === 0) {
+    
+    if (seconds == 00 ) {
         clearInterval(timerInterval)
     }
+
+    
 }
+
+
+// if( user doesnt select any of these answer from validateAnswers ){
+//      console.log("Wrong ")
+// }
+//     else 
+//     {
+//         console.log("Correct")
+//     }
+
+
+
+
+
 
 
 // Targeting the Start Quiz button 
 let submitBtn = document.querySelector("#submitBtn");
 submitBtn.addEventListener("click", startBtnSubmit);
-// submitBtn.addEventListener("click", displayQuestion);
 
 
 let startSection = document.querySelector(".startSection")
@@ -88,26 +112,54 @@ function startBtnSubmit() {
     startSection.classList.add("hide")  //Hide the Coding Quiz Challenge Section 
     container.classList.remove("hide")  // Show questions & Answers 
     timerInterval = setInterval(updateCountdown, 1000);
+
+        questionContainer.innerHTML= questions[currentQuestion].question
+        a_text.innerHTML = questions[currentQuestion].a   // innerHTML = Replacing whats in the HTML with the javascript values.
+        b_text.innerHTML = questions[currentQuestion].b
+        c_text.innerHTML = questions[currentQuestion].c
+        d_text.innerHTML = questions[currentQuestion].d
+currentQuestion++
 }
-
-
-// function displayQuestion() {
-//         questions[currentQuestion].question
-//         questions[currentQuestion].correct[0]
-//         currentQuestion++
-// }
-
-
-
 
 //Targetting the Next Button - once user clicks next button then another questions shows
 let nextBtn = document.querySelector ("#nextBtn");
 nextBtn.addEventListener("click", function(){
- console.log( answerEl.EventTarget.value    )
+    // innerHTML = Replacing whats in the HTML with the javascript values.
+    // currentQuestion++ iterarting over the array to go to the next question
+    // We are saying update currentQuestion with the corresponding innerHTML value 
+   
+        questionContainer.innerHTML= questions[currentQuestion].question
+        a_text.innerHTML = questions[currentQuestion].a
+        b_text.innerHTML = questions[currentQuestion].b
+        c_text.innerHTML = questions[currentQuestion].c
+        d_text.innerHTML = questions[currentQuestion].d
+currentQuestion++
 
 });
 
 
+    
+
+function validateAnswers (){
+    if ( questions[0].correct === "d" )
+    console.log(" Correct!")
+
+    for (let i = 0; i < questions.length; i++) {
+        const element = questions[i].correct;
+        
+       console.log (element)
+            if (answerels.value == correct) {
+            console.log("That's correct!");
+            currentscore++;
+        } else {
+            console.log(`Sorry, the correct answer is ${questionsData[currentQuestion-1].answers[correctAnswer]}.`);
+        }
+
+    
+        }
+            
+
+    }
 
 
 
@@ -116,9 +168,18 @@ nextBtn.addEventListener("click", function(){
 
 
 
-// if( timerInterval=== 0){
-//     window.alert (" You Ran out of Time.")
-// }
+
+
+
+
+
+
+//   correctAnswer = (questionsData[currentQuestion].correct)
+//         if ( correctAnswer){
+//             console.log(" Correct")
+
+
+
 
 
 // if ( user answers all questions || timer runs out )
