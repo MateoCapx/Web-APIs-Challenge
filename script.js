@@ -12,7 +12,34 @@
     const b_text = document.getElementById('b_text')
     const c_text = document.getElementById('c_text')
     const d_text = document.getElementById('d_text')
+    const answer = document.getElementById('answer')
 
+ 
+  function checkAnswer(e){
+    //IF this is a correcrt question
+       // targeting the button with this function. 
+       
+      
+
+        if(e.target.textContent === questions[currentQuestion-1].correct) {
+            console.log( "Correct");
+            answer.textContent = ("Correct")
+            quizOver.textContent = (" Reload ")
+        }
+        else 
+          {
+            console.log( "Wrongggggg");
+            answer.textContent = ("Wrong")
+                
+            }
+           
+}
+
+
+    a_text.addEventListener("click",checkAnswer)
+    b_text.addEventListener("click",checkAnswer)
+    c_text.addEventListener("click",checkAnswer)
+    d_text.addEventListener("click",checkAnswer)
 
 
     
@@ -24,7 +51,7 @@ let questions = [
         b: "C",
         c: "Python",
         d: "javascript",
-        correct: "d",
+        correct: "javascript",
     },
 
 
@@ -34,7 +61,7 @@ let questions = [
         b: "Cascading Style Sheets",
         c: "Cascading Simple Sheets",
         d: "Cars SUVs Sailboats",
-        correct: "b",
+        correct: "Cascading Style Sheets",
     },
 
 
@@ -44,7 +71,7 @@ let questions = [
         b: "Hypertext Markdown Language",
         c: "Hyperloop Machine Language",
         d: "Helicopters Terminals Motorboats Lamborginis",
-        correct: "a",
+        correct: "Hypertext Markup Language",
     },
 
 
@@ -54,12 +81,14 @@ let questions = [
         b: "1995",
         c: "1994",
         d: "none of the above",
-        correct: "b",
+        correct: "1995",
     },
 
 ]
-
-
+questions.forEach(currentQuestion => {
+    console.log("fmdm")
+});
+    
 
 
 // Variables for countdown timer
@@ -78,26 +107,11 @@ function updateCountdown() {
     countDownT.innerHTML = `${mintues}: ${seconds}`;
     time--;
 
-    
     if (seconds == 00 ) {
         clearInterval(timerInterval)
     }
 
-    
 }
-
-
-// if( user doesnt select any of these answer from validateAnswers ){
-//      console.log("Wrong ")
-// }
-//     else 
-//     {
-//         console.log("Correct")
-//     }
-
-
-
-
 
 
 
@@ -113,11 +127,11 @@ function startBtnSubmit() {
     container.classList.remove("hide")  // Show questions & Answers 
     timerInterval = setInterval(updateCountdown, 1000);
 
-        questionContainer.innerHTML= questions[currentQuestion].question
-        a_text.innerHTML = questions[currentQuestion].a   // innerHTML = Replacing whats in the HTML with the javascript values.
-        b_text.innerHTML = questions[currentQuestion].b
-        c_text.innerHTML = questions[currentQuestion].c
-        d_text.innerHTML = questions[currentQuestion].d
+        questionContainer.textContent= questions[currentQuestion].question
+        a_text.textContent = questions[currentQuestion].a   // textContent = Replacing whats in the HTML with the javascript values.
+        b_text.textContent = questions[currentQuestion].b
+        c_text.textContent = questions[currentQuestion].c
+        d_text.textContent = questions[currentQuestion].d
 currentQuestion++
 }
 
@@ -127,62 +141,31 @@ nextBtn.addEventListener("click", function(){
     // innerHTML = Replacing whats in the HTML with the javascript values.
     // currentQuestion++ iterarting over the array to go to the next question
     // We are saying update currentQuestion with the corresponding innerHTML value 
+
+        answer.textContent = " "   // resetting the correct or incorrect response once the next questio displays
+        questionContainer.textContent= questions[currentQuestion].question
+        a_text.textContent = questions[currentQuestion].a
+        b_text.textContent = questions[currentQuestion].b
+        c_text.textContent = questions[currentQuestion].c
+        d_text.textContent = questions[currentQuestion].d
+
    
-        questionContainer.innerHTML= questions[currentQuestion].question
-        a_text.innerHTML = questions[currentQuestion].a
-        b_text.innerHTML = questions[currentQuestion].b
-        c_text.innerHTML = questions[currentQuestion].c
-        d_text.innerHTML = questions[currentQuestion].d
 currentQuestion++
 
 });
 
 
-    
 
-function validateAnswers (){
-    if ( questions[0].correct === "d" )
-    console.log(" Correct!")
 
-    for (let i = 0; i < questions.length; i++) {
-        const element = questions[i].correct;
-        
-       console.log (element)
-            if (answerels.value == correct) {
-            console.log("That's correct!");
-            currentscore++;
-        } else {
-            console.log(`Sorry, the correct answer is ${questionsData[currentQuestion-1].answers[correctAnswer]}.`);
-        }
 
-    
-        }
-            
 
+if(currentQuestion > questions.length) {
+       console.log("hellcnc")
     }
+    
+    
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-//   correctAnswer = (questionsData[currentQuestion].correct)
-//         if ( correctAnswer){
-//             console.log(" Correct")
-
-
-
-
-
-// if ( user answers all questions || timer runs out )
-//     window.alert(" Game Over ");   - Once User answers all questions or timer runs out
 
 
