@@ -22,7 +22,7 @@
         if(e.target.textContent === questions[currentQuestion-1].correct) {
             console.log( "Correct");
             answer.textContent = ("Correct")
-            quizOver.textContent = (" Reload ")
+            // quizOver.textContent = (" Reload ")
         }
         else 
           {
@@ -85,7 +85,7 @@ let questions = [
 
 ]
 
-console.log(questions)
+
 
 // Variables for countdown timer
 let startingMinutes = 2;
@@ -140,7 +140,7 @@ currentQuestion++
 
     function nextQuestion(){
         answer.textContent = " "   // resetting the correct or incorrect response once the next questio displays
-        questionContainer.textContent= questions[currentQuestion].question
+        questionContainer.textContent= questions[currentQuestion].question  // updates question when NEXT button is clicked
         a_text.textContent = questions[currentQuestion].a
         b_text.textContent = questions[currentQuestion].b
         c_text.textContent = questions[currentQuestion].c
@@ -149,11 +149,17 @@ currentQuestion++
    
         
 currentQuestion++
-
-        if (currentQuestion.length == [4]){
-           window.alert('Quiz is Over');
+// checks to see if user answered all the questions
+// if user answered all question the else statment says output user score & reload quiz
+        if (currentQuestion === questions[3]){
+            startBtnSubmit()
         } 
-
+        else{
+            answer.innerHTML =quiz.innerHTML = `
+            <h2>You answered ${userScore}/${currentQuestion.length} questions correctly</h2>
+            <button onclick="location.reload()">Reload</button>
+            `
+        }
 
     }
 
@@ -190,3 +196,5 @@ nextBtn.addEventListener("click", function(){
 
 
 // }
+
+
