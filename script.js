@@ -15,12 +15,10 @@
     const answer = document.getElementById('answer')
 
  
-  function checkAnswer(e){
-    //IF this is a correcrt question
-       // targeting the button with this function. 
-       
+    
+  function checkAnswer(e){   // (e) = event
+    //Validating users answers & subtracting 10 seconds if they get it wrong
       
-
         if(e.target.textContent === questions[currentQuestion-1].correct) {
             console.log( "Correct");
             answer.textContent = ("Correct")
@@ -30,19 +28,20 @@
           {
             console.log( "Wrongggggg");
             answer.textContent = ("Wrong")
-                
+                time = time -10;  // subtracting 10 seconds from timer if user gets question wrong.
             }
            
 }
 
-
+// Allows user to click a button and get a response 
     a_text.addEventListener("click",checkAnswer)
     b_text.addEventListener("click",checkAnswer)
     c_text.addEventListener("click",checkAnswer)
     d_text.addEventListener("click",checkAnswer)
 
 
-    
+
+    // Array of all the questions & answers 
 let questions = [
 
     {
@@ -85,20 +84,18 @@ let questions = [
     },
 
 ]
-questions.forEach(currentQuestion => {
-    console.log("fmdm")
-});
-    
 
+console.log(questions)
 
 // Variables for countdown timer
-let startingMinutes = .2;
+let startingMinutes = 2;
 let time = startingMinutes * 60;
 let timerInterval;
 
 
 // Timer Properties 
 let countDownT = document.querySelector("#countDownTimer");
+
 
 function updateCountdown() {
     const mintues = Math.floor(time / 60);
@@ -107,8 +104,10 @@ function updateCountdown() {
     countDownT.innerHTML = `${mintues}: ${seconds}`;
     time--;
 
-    if (seconds == 00 ) {
+        // Stops timer & doesn't allow timer to run into the negative.
+    if (seconds == 00 && mintues== 00 ) {
         clearInterval(timerInterval)
+        answer.textContent = ( "Ran Out of time ")  // Displays to the user that the time has ran out.
     }
 
 }
@@ -132,16 +131,14 @@ function startBtnSubmit() {
         b_text.textContent = questions[currentQuestion].b
         c_text.textContent = questions[currentQuestion].c
         d_text.textContent = questions[currentQuestion].d
+
+        
 currentQuestion++
 }
 
-//Targetting the Next Button - once user clicks next button then another questions shows
-let nextBtn = document.querySelector ("#nextBtn");
-nextBtn.addEventListener("click", function(){
-    // innerHTML = Replacing whats in the HTML with the javascript values.
-    // currentQuestion++ iterarting over the array to go to the next question
-    // We are saying update currentQuestion with the corresponding innerHTML value 
 
+
+    function nextQuestion(){
         answer.textContent = " "   // resetting the correct or incorrect response once the next questio displays
         questionContainer.textContent= questions[currentQuestion].question
         a_text.textContent = questions[currentQuestion].a
@@ -150,22 +147,46 @@ nextBtn.addEventListener("click", function(){
         d_text.textContent = questions[currentQuestion].d
 
    
+        
 currentQuestion++
 
-});
+        if (currentQuestion.length == [4]){
+           window.alert('Quiz is Over');
+        } 
 
 
-
-
-
-
-if(currentQuestion > questions.length) {
-       console.log("hellcnc")
     }
+
+
+//Targetting the Next Button - once user clicks next button then another questions shows
+let nextBtn = document.querySelector ("#nextBtn");
+nextBtn.addEventListener("click", function(){
+    // innerHTML = Replacing whats in the HTML with the javascript values.
+    // currentQuestion++ iterarting over the array to go to the next question
+    // We are saying update currentQuestion with the corresponding innerHTML value 
+
+    nextQuestion()
+
+
     
+ });
+
+
+
+
+
+
+
     
 
 
 
 
 
+// function answerCheck(){
+//     if (this.value=== questions[currentQuestion].correct) {
+
+//     }
+
+
+// }
