@@ -52,7 +52,7 @@
 
 
 
-                <div>
+                <div class="answer" id="answerBtns">
                     <button id="a_text"> A </button>
                     <button id="b_text"> B </button>
                     <button id="c_text"> C </button>
@@ -61,20 +61,26 @@
                 </div>
 
 
-                <div>
+                <div class="textContent" id="textContentFiller">
                         <h1 id="answer">  </h1>
                 </div>
 
-
-                     <div>
-                            <h1 id="quizOver">  </h1>
-                    </div>
-
-
             <button class=" nextQBtn" id="nextBtn"> Next </button>
-            
-           
+   
+
     </main>    
+
+
+      <form class="endQuiz hide" id="endQuizForm">
+        <h1> All Done!</h1>
+        <h2> Your Final Score is </h2>
+            <label for="name-input">Enter Your Initial:</label>
+            <input type="text" class="form-control" id="name-input" placeholder="Leave your name" />
+            <button class=" buttonSub" id="btnSub"> Submit </button>
+           </form>
+
+
+
  <script src="script.js"></script>
 
 </body>

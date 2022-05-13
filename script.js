@@ -1,5 +1,4 @@
 
-    //let finalScoreArr = [];  // Array to store all of the correct answers from the user
     let correctPoints = 10;  // Number of points user gets for ever correct answer
     let container = document.querySelector(".container")
     let questionContainer = document.querySelector(".question")
@@ -22,13 +21,15 @@
         if(e.target.textContent === questions[currentQuestion-1].correct) {
             console.log( "Correct");
             answer.textContent = ("Correct")
-            // quizOver.textContent = (" Reload ")
+            userScore++   // if user gets answer correct add 1 to userScore
+            startBtnSubmit()
         }
         else 
           {
             console.log( "Wrongggggg");
             answer.textContent = ("Wrong")
                 time = time -10;  // subtracting 10 seconds from timer if user gets question wrong.
+                startBtnSubmit() // skips to the next question if user gets question wrong
             }
            
 }
@@ -119,6 +120,8 @@ let submitBtn = document.querySelector("#submitBtn");
 submitBtn.addEventListener("click", startBtnSubmit);
 
 
+
+
 let startSection = document.querySelector(".startSection")
 // function to Start Quiz & Start Timer at the same time 
 function startBtnSubmit() {
@@ -151,17 +154,24 @@ currentQuestion++
 currentQuestion++
 // checks to see if user answered all the questions
 // if user answered all question the else statment says output user score & reload quiz
-        if (currentQuestion === questions[3]){
+        if (questions.length){
             startBtnSubmit()
         } 
         else{
+                
             answer.innerHTML =quiz.innerHTML = `
-            <h2>You answered ${userScore}/${currentQuestion.length} questions correctly</h2>
+            <h2>You answered ${userScore}/${questions.length} questions correctly</h2>
             <button onclick="location.reload()">Reload</button>
             `
+            
         }
 
     }
+
+
+// End Quiz submit itnial form
+let endQuiz =document.querySelector("#endQuizForm")
+let endQuizBtn =document.querySelector("#btnSub")
 
 
 //Targetting the Next Button - once user clicks next button then another questions shows
@@ -186,15 +196,5 @@ nextBtn.addEventListener("click", function(){
     
 
 
-
-
-
-// function answerCheck(){
-//     if (this.value=== questions[currentQuestion].correct) {
-
-//     }
-
-
-// }
 
 
