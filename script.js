@@ -1,48 +1,47 @@
 
-    let correctPoints = 10;  // Number of points user gets for ever correct answer
-    let container = document.querySelector(".container")
-    let questionContainer = document.querySelector(".question")
-    let answerEls = document.querySelectorAll(".answer")
-    let currentQuestion = 0;
-    let userScore =0;
+let correctPoints = 10;  // Number of points user gets for ever correct answer
+let container = document.querySelector(".container")
+let questionContainer = document.querySelector(".question")
+let answerEls = document.querySelectorAll(".answer")
+let currentQuestion = 0;
+let userScore = 0;
 
 
-    const a_text = document.getElementById('a_text')
-    const b_text = document.getElementById('b_text')
-    const c_text = document.getElementById('c_text')
-    const d_text = document.getElementById('d_text')
-    const answer = document.getElementById('answer')
+const a_text = document.getElementById('a_text')
+const b_text = document.getElementById('b_text')
+const c_text = document.getElementById('c_text')
+const d_text = document.getElementById('d_text')
+const answer = document.getElementById('answer')
 
- 
-    
-  function checkAnswer(e){   // (e) = event
+
+
+function checkAnswer(e) {   // (e) = event
     //Validating users answers & subtracting 10 seconds if they get it wrong
-      
-        if(e.target.textContent === questions[currentQuestion-1].correct) {
-            console.log( "Correct");
-            answer.textContent = ("Correct")
-            userScore++   // if user gets answer correct add 1 to userScore
-            startBtnSubmit()
-        }
-        else 
-          {
-            console.log( "Wrongggggg");
-            answer.textContent = ("Wrong")
-                time = time -10;  // subtracting 10 seconds from timer if user gets question wrong.
-                startBtnSubmit() // skips to the next question if user gets question wrong
-            }
-           
+
+    if (e.target.textContent === questions[currentQuestion - 1].correct) {
+        console.log("Correct");
+        answer.textContent = ("Correct")
+        userScore++   // if user gets answer correct add 1 to userScore
+        startBtnSubmit()
+    }
+    else {
+        console.log("Wrongggggg");
+        answer.textContent = ("Wrong")
+        time = time - 10;  // subtracting 10 seconds from timer if user gets question wrong.
+        startBtnSubmit() // skips to the next question if user gets question wrong
+    }
+
 }
 
 // Allows user to click a button and get a response 
-    a_text.addEventListener("click",checkAnswer)
-    b_text.addEventListener("click",checkAnswer)
-    c_text.addEventListener("click",checkAnswer)
-    d_text.addEventListener("click",checkAnswer)
+a_text.addEventListener("click", checkAnswer)
+b_text.addEventListener("click", checkAnswer)
+c_text.addEventListener("click", checkAnswer)
+d_text.addEventListener("click", checkAnswer)
 
 
 
-    // Array of all the questions & answers 
+// Array of all the questions & answers 
 let questions = [
 
     {
@@ -105,14 +104,22 @@ function updateCountdown() {
     countDownT.innerHTML = `${mintues}: ${seconds}`;
     time--;
 
-        // Stops timer & doesn't allow timer to run into the negative.
-    if (seconds == 00 && mintues== 00 ) {
+    // Stops timer & doesn't allow timer to run into the negative.
+    if (seconds == 00 && mintues == 00) {
         clearInterval(timerInterval)
-        answer.textContent = ( "Ran Out of time ")  // Displays to the user that the time has ran out.
+        answer.textContent = ("Ran Out of time ")  // Displays to the user that the time has ran out.
+        answer.innerHTML = quiz.innerHTML = `
+        <h2>You answered ${userScore}/${questions.length} questions correctly</h2>
+        <button onclick="location.reload()">Submit</button>
+        `
     }
 
 }
 
+
+// End Quiz submit itnial form
+let endQuiz = document.querySelector("#endQuizForm")
+let endQuizBtn = document.querySelector("#btnSub")
 
 
 // Targeting the Start Quiz button 
@@ -129,54 +136,79 @@ function startBtnSubmit() {
     container.classList.remove("hide")  // Show questions & Answers 
     timerInterval = setInterval(updateCountdown, 1000);
 
-        questionContainer.textContent= questions[currentQuestion].question
-        a_text.textContent = questions[currentQuestion].a   // textContent = Replacing whats in the HTML with the javascript values.
-        b_text.textContent = questions[currentQuestion].b
-        c_text.textContent = questions[currentQuestion].c
-        d_text.textContent = questions[currentQuestion].d
+    
+// validate if user reached end of quiz
+    if (currentQuestion >= questions.length) {
+        console.log('end quiz')
+        // end quiz function
+       
+        answer.innerHTML = quiz.innerHTML = `
+            <h2>You answered ${userScore}/${questions.length} questions correctly</h2>
+            <button onclick="location.reload()">Submit</button>
+            `
+            endQuiz.classList.remove("hide")  // showing the save inital form
 
-        
-currentQuestion++
+        return; 
+     }
+
+    questionContainer.textContent = questions[currentQuestion].question
+    a_text.textContent = questions[currentQuestion].a   // textContent = Replacing whats in the HTML with the javascript values.
+    b_text.textContent = questions[currentQuestion].b
+    c_text.textContent = questions[currentQuestion].c
+    d_text.textContent = questions[currentQuestion].d
+
+
+    currentQuestion++
 }
 
 
 
-    function nextQuestion(){
-        answer.textContent = " "   // resetting the correct or incorrect response once the next questio displays
-        questionContainer.textContent= questions[currentQuestion].question  // updates question when NEXT button is clicked
-        a_text.textContent = questions[currentQuestion].a
-        b_text.textContent = questions[currentQuestion].b
-        c_text.textContent = questions[currentQuestion].c
-        d_text.textContent = questions[currentQuestion].d
+function nextQuestion() {
 
-   
-        
-currentQuestion++
-// checks to see if user answered all the questions
-// if user answered all question the else statment says output user score & reload quiz
-        if (questions.length){
-            startBtnSubmit()
-        } 
-        else{
-                
-            answer.innerHTML =quiz.innerHTML = `
+
+    // checks to see if user answered all the questions
+    // if user answered all question the else statment says output user score & reload quiz
+    if (currentQuestion >= questions.length) {
+        console.log('end quiz')
+        // end quiz function
+        answer.innerHTML = quiz.innerHTML = `
             <h2>You answered ${userScore}/${questions.length} questions correctly</h2>
-            <button onclick="location.reload()">Reload</button>
+            <button onclick="location.reload()"> Submit </button>
             `
-            
-        }
+        return; 
+     }
 
-    }
+  
+
+    answer.textContent = " "   // resetting the correct or incorrect response once the next questio displays
+    questionContainer.textContent = questions[currentQuestion].question  // updates question when NEXT button is clicked
+    a_text.textContent = questions[currentQuestion].a
+    b_text.textContent = questions[currentQuestion].b
+    c_text.textContent = questions[currentQuestion].c
+    d_text.textContent = questions[currentQuestion].d
 
 
-// End Quiz submit itnial form
-let endQuiz =document.querySelector("#endQuizForm")
-let endQuizBtn =document.querySelector("#btnSub")
+
+    currentQuestion++
+    
+    // else {
+
+    //     answer.innerHTML = quiz.innerHTML = `
+    //         <h2>You answered ${userScore}/${questions.length} questions correctly</h2>
+    //         <button onclick="location.reload()">Reload</button>
+    //         `
+
+    // }
+
+
+}
+
+
 
 
 //Targetting the Next Button - once user clicks next button then another questions shows
-let nextBtn = document.querySelector ("#nextBtn");
-nextBtn.addEventListener("click", function(){
+let nextBtn = document.querySelector("#nextBtn");
+nextBtn.addEventListener("click", function () {
     // innerHTML = Replacing whats in the HTML with the javascript values.
     // currentQuestion++ iterarting over the array to go to the next question
     // We are saying update currentQuestion with the corresponding innerHTML value 
@@ -184,8 +216,8 @@ nextBtn.addEventListener("click", function(){
     nextQuestion()
 
 
-    
- });
+
+});
 
 
 
@@ -193,7 +225,7 @@ nextBtn.addEventListener("click", function(){
 
 
 
-    
+
 
 
 

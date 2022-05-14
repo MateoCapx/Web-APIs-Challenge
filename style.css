@@ -49,3 +49,83 @@ header{
 .nextQBtn {
     cursor: pointer;
 }
+
+
+/* Styling the answer buttons  */
+ #a_text  {
+    margin-top: 25px;
+    cursor: pointer;
+    border-radius: 15px;
+    font-size: 20px;
+    background-color: rgb(177, 25, 177);
+    color: white;
+    text-align: center;
+}
+
+#b_text  {
+    margin-top: 25px;
+    cursor: pointer;
+    border-radius: 15px;
+    font-size: 20px;
+    background-color: rgb(177, 25, 177);
+    color: white;
+    text-align: center;
+}
+
+#c_text  {
+    margin-top: 25px;
+    cursor: pointer;
+    border-radius: 15px;
+    font-size: 20px;
+    background-color: rgb(177, 25, 177);
+    color: white;
+    text-align: center;
+}
+
+#d_text  {
+    margin-top: 25px;
+    cursor: pointer;
+    border-radius: 15px;
+    font-size: 20px;
+    background-color: rgb(177, 25, 177);
+    color: white;
+    text-align: center;
+}
+
+#nextBtn{
+
+    margin-top: 25px;
+    cursor: pointer;
+    border-radius: 15px;
+    font-size: 20px;
+    background-color :rgb(177, 25, 177);
+    color: white;
+    text-align: center;
+}
+
+/* 
+#quiz #answerBtns {
+
+
+
+} */
+
+/* Styling the Wrong & correct displays */
+#textContentFiller{
+    text-decoration: underline;
+    padding-top: 50px;
+    color: grey;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+}
+
+
+/* Styling the submit name form  */
+#endQuizForm{
+    padding-top: 100px;
+    padding-left: 20px;
+}
+
+#name-input.form-control{
+    width: 50%;
+}
