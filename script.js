@@ -117,9 +117,9 @@ function updateCountdown() {
 }
 
 
-// End Quiz submit itnial form
-let endQuiz = document.querySelector("#endQuizForm")
-let endQuizBtn = document.querySelector("#btnSub")
+// // End Quiz submit itnial form
+// let endQuiz = document.querySelector("#endQuizForm")
+// let endQuizBtn = document.querySelector("#btnSub")
 
 
 // Targeting the Start Quiz button 
@@ -190,20 +190,8 @@ function nextQuestion() {
 
 
     currentQuestion++
-    
-    // else {
-
-    //     answer.innerHTML = quiz.innerHTML = `
-    //         <h2>You answered ${userScore}/${questions.length} questions correctly</h2>
-    //         <button onclick="location.reload()">Reload</button>
-    //         `
-
-    // }
-
 
 }
-
-
 
 
 //Targetting the Next Button - once user clicks next button then another questions shows
